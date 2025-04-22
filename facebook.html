@@ -1,0 +1,179 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Facebook - Log in or Sign up</title>
+<style>
+body {
+font-family: Arial, Helvetica, sans-serif;
+margin: 0;
+padding: 0;
+background-color: whitesmoke;
+display: flex;
+justify-content: center;
+align-items: center;
+height: 100vh;
+}
+.container {
+display: flex;
+max-width: 1000px;
+gap: 100px;
+align-items: center;
+}
+.intro {
+width: 500px;
+}
+.intro h1 {
+color: royalblue;
+font-size: 56px;
+margin-bottom: 10px;
+}
+.intro p {
+font-size: 24px;
+color: darkslategray;
+}
+.login-form {
+background-color: white;
+padding: 20px;
+border-radius: 8px;
+box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+width: 400px;
+text-align: center;
+}
+.login-form input {
+width: 100%;
+padding: 14px 16px;
+margin-bottom: 12px;
+border: 1px solid lightgray;
+border-radius: 6px;
+font-size: 16px;
+box-sizing: border-box;
+}
+.login-form input:focus {
+border-color: royalblue;
+outline: none;
+box-shadow: 0 0 0 2px aliceblue;
+}
+.login-btn {
+background-color: royalblue;
+color: white;
+border: none;
+border-radius: 6px;
+font-size: 20px;
+font-weight: bold;
+padding: 12px;
+width: 100%;
+margin-bottom: 20px;
+cursor: pointer;
+}
+.login-btn:hover {
+background-color: dodgerblue;
+}
+.forgot-password {
+color: royalblue;
+text-decoration: none;
+font-size: 14px;
+display: block;
+margin-bottom: 20px;
+}
+.forgot-password:hover {
+text-decoration: underline;
+}
+.divider {
+border-bottom: 1px solid lightgray;
+margin: 20px 0;
+}
+.create-account {
+background-color: limegreen;
+color: white;
+border: none;
+border-radius: 6px;
+font-size: 17px;
+font-weight: bold;
+padding: 15px;
+margin: 10px 0 20px;
+cursor: pointer;
+}
+.create-account:hover {
+background-color: forestgreen;
+}
+.create-page {
+font-size: 14px;
+color: darkslategray;
+margin-top: 20px;
+}
+.create-page a {
+color: black;
+font-weight: bold;
+text-decoration: none;
+}
+.create-page a:hover {
+text-decoration: underline;
+}
+.error {
+color: crimson;
+font-size: 13px;
+margin: -10px 0 10px 0;
+text-align: left;
+}
+</style>
+</head>
+<body>
+<div class="container">
+<div class="intro">
+<h1>facebook</h1>
+<p>Facebook helps you connect and share with the people in your life.</p>
+</div>
+
+<div class="login-form">
+<form id="loginForm">
+<input type="text" id="email" placeholder="Email address or phone number">
+<span id="emailError" class="error"></span>
+
+<input type="password" id="password" placeholder="Password">
+<span id="passwordError" class="error"></span>
+
+<button type="submit" class="login-btn">Log in</button>
+
+<a href="#" class="forgot-password">Forgotten password?</a>
+
+<div class="divider"></div>
+
+<button type="button" class="create-account">Create new account</button>
+
+<p class="create-page"><a href="#">Create a Page</a> for a celebrity, brand or business.</p>
+</form>
+</div>
+</div>
+
+<script>
+document.getElementById("loginForm").addEventListener("submit", function(event) {
+event.preventDefault();
+
+var email = document.getElementById("email").value;
+var password = document.getElementById("password").value;
+var isValid = true;
+
+if (!/^\S+@\S+\.\S+$/.test(email) && !/^\d{10}$/.test(email)) {
+document.getElementById("emailError").innerHTML = "Please enter a valid email or phone number";
+isValid = false;
+} else {
+document.getElementById("emailError").innerHTML = "";
+}
+
+if (password.length < 6) {
+document.getElementById("passwordError").innerHTML = "Password must be at least 6 characters";
+isValid = false;
+} else {
+document.getElementById("passwordError").innerHTML = "";
+}
+
+if (isValid) {
+window.location.href = "interface.html";
+
+}
+});
+</script>
+</body>
+</html>

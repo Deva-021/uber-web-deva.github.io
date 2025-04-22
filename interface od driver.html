@@ -1,0 +1,429 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Driver Dashboard</title>
+<style>
+:root {
+--uber-black: #000000;
+--uber-green: #00cc66;
+--uber-light: #f8f9fa;
+--uber-gray: #6c757d;
+--uber-dark-gray: #343a40;
+--uber-blue:  #007bff;
+--uber-red:  #dc3545;
+--uber-yellow:  #ffc107;
+}
+
+* {
+box-sizing: border-box;
+margin: 0;
+padding: 0;
+font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+body {
+background-color: #f5f7fa;
+color: var(--uber-dark-gray);
+line-height: 1.6;
+}
+
+.header {
+background: linear-gradient(135deg, var(--uber-black) 0%,  #222 100%);
+color: white;
+padding: 15px 25px;
+text-align: center;
+font-size: 22px;
+font-weight: bold;
+position: sticky;
+top: 0;
+z-index: 1000;
+display: flex;
+justify-content: space-between;
+align-items: center;
+box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+}
+
+.header span {
+color: var(--uber-green);
+font-weight: 700;
+}
+
+.driver-info {
+text-align: center;
+margin: 20px 0;
+}
+
+.driver-photo {
+width: 100px;
+height: 100px;
+border-radius: 50%;
+border: 4px solid var(--uber-green);
+margin: 0 auto 10px;
+object-fit: cover;
+}
+
+.main-content {
+padding: 20px;
+max-width: 900px;
+margin: 0 auto;
+}
+
+.card {
+background-color: white;
+border-radius: 12px;
+padding: 20px;
+margin-bottom: 20px;
+box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.card-title {
+font-size: 20px;
+margin-bottom: 20px;
+color: var(--uber-black);
+font-weight: 600;
+display: flex;
+align-items: center;
+gap: 10px;
+}
+
+.status-container {
+display: flex;
+flex-direction: column;
+gap: 15px;
+}
+
+.status-select {
+width: 100%;
+padding: 12px;
+border: 1px solid  #e0e0e0;
+border-radius: 8px;
+font-size: 16px;
+}
+
+.status-button {
+width: 100%;
+padding: 12px;
+background: var(--uber-green);
+color: white;
+border: none;
+border-radius: 8px;
+font-weight: 600;
+cursor: pointer;
+}
+
+.ride-request {
+border: 1px solid  #e0e0e0;
+padding: 15px;
+margin-bottom: 15px;
+border-radius: 10px;
+}
+
+.ride-location {
+margin-bottom: 8px;
+font-weight: 500;
+display: flex;
+align-items: flex-start;
+gap: 10px;
+}
+
+.ride-actions {
+display: flex;
+gap: 10px;
+margin-top: 15px;
+}
+
+.accept-button,  .reject-button {
+flex: 1;
+padding: 10px;
+border: none;
+border-radius: 8px;
+font-weight: 600;
+cursor: pointer;
+}
+
+.accept-button {
+background: var(--uber-green);
+color: white;
+}
+
+.reject-button {
+background:  #f8f9fa;
+color: var(--uber-dark-gray);
+}
+
+.footer {
+text-align: center;
+padding: 20px;
+color: var(--uber-gray);
+}
+
+.stats-container {
+display: grid;
+grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+gap: 15px;
+margin-bottom: 20px;
+}
+
+.stat-card {
+background-color: white;
+border-radius: 10px;
+padding: 15px;
+text-align: center;
+}
+
+.earning-card {
+background:  #2c3e50;
+color: white;
+border-radius: 10px;
+padding: 20px;
+margin-bottom: 20px;
+}
+
+@media (max-width: 768px) {
+.header {
+font-size: 18px;
+}
+.ride-actions {
+flex-direction: column;
+}
+}
+
+/* Added dropdown styles (only addition) */
+.profile-dropdown {
+display: none;
+position: absolute;
+right: 25px;
+top: 70px;
+background-color: white;
+border-radius: 10px;
+box-shadow: 0 5px 20px rgba(0,0,0,0.15);
+z-index: 1002;
+min-width: 200px;
+overflow: hidden;
+}
+
+.profile-dropdown a {
+display: flex;
+align-items: center;
+gap: 10px;
+padding: 12px 20px;
+color: var(--uber-dark-gray);
+text-decoration: none;
+font-size: 14px;
+transition: all 0.2s;
+border-left: 3px solid transparent;
+}
+
+.profile-dropdown a:hover {
+background-color: #f8f9fa;
+border-left: 3px solid var(--uber-green);
+padding-left: 17px;
+}
+
+.profile-dropdown a i {
+width: 20px;
+text-align: center;
+}
+
+.show-dropdown {
+display: block;
+}
+
+.profile-button {
+background: none;
+border: none;
+color: white;
+cursor: pointer;
+font-size: 14px;
+display: flex;
+align-items: center;
+gap: 5px;
+padding: 5px 10px;
+border-radius: 5px;
+}
+</style>
+</head>
+<body>
+<div class="header">
+<div><span>UBER</span> DRIVER DASHBOARD</div>
+<button class="profile-button" onclick="toggleProfileDropdown()">
+<i class="fas fa-user-circle"></i> 👤 Profile
+</button>
+<div class="profile-dropdown" id="profileDropdown">
+<a href="driverprofile.html"><i class="fas fa-user"></i>👤 My Profile</a>
+<a href="#"><i class="fas fa-cog"></i>⚙️Settings</a>
+<a href="index.html"><i class="fas fa-sign-out-alt"></i> 🚪Logout</a>
+</div>
+</div>
+
+<div class="driver-info">
+<img src="Driver.jpg" alt="Driver" class="driver-photo">
+<div class="driver-name">John Driver</div>
+<div class="driver-rating">
+<span class="star">⭐</span>
+4.92 (328 rides)
+</div>
+</div>
+
+<div class="main-content">
+<div class="stats-container">
+<div class="stat-card">
+<div>328</div>
+<div>Total Rides</div>
+</div>
+<div class="stat-card">
+<div>4.92</div>
+<div>Avg Rating</div>
+</div>
+<div class="stat-card">
+<div>97%</div>
+<div>Acceptance</div>
+</div>
+<div class="stat-card">
+<div>$1,248</div>
+<div>This Week</div>
+</div>
+</div>
+
+<div class="earning-card">
+<div>Today's Earnings</div>
+<div>$186.75</div>
+<div>6 rides • 3 hours 42 min online</div>
+</div>
+
+<div class="card">
+<div class="card-title">Driver Status</div>
+<div class="status-container">
+<select class="status-select" id="rideStatus">
+<option value="">Select status</option>
+<option value="Available">Available</option>
+<option value="OnRide">On a ride</option>
+<option value="Offline">Offline</option>
+</select>
+<button class="status-button" onclick="updateStatus()">
+Update Status
+</button>
+</div>
+</div>
+
+<div class="card">
+<div class="card-title">New Ride Requests</div>
+<div id="rideRequests">
+<div class="ride-request">
+<div class="ride-location">
+<span>From: <strong>Times Square, Manhattan</strong></span>
+</div>
+<div class="ride-location">
+<span>To: <strong>JFK Airport</strong></span>
+</div>
+<div>UberX • 15 miles away • $25-30</div>
+<div>Estimated 25 min • 1 passenger</div>
+<div class="ride-actions">
+<button class="accept-button" onclick="acceptRide()">
+Accept
+</button>
+<button class="reject-button" onclick="rejectRide()">
+Reject
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div id="rideRequests">
+<div class="ride-request">
+<div class="ride-location">
+<span>From: <strong>Times Square, Manhattan</strong></span>
+</div>
+<div class="ride-location">
+<span>To: <strong>JFK Airport</strong></span>
+</div>
+<div>UberX • 15 miles away • $25-30</div>
+<div>Estimated 25 min • 1 passenger</div>
+<div class="ride-actions">
+<button class="accept-button" onclick="acceptRide()">
+Accept
+</button>
+<button class="reject-button" onclick="rejectRide()">
+Reject
+</button>
+</div>
+</div>
+</div>
+</div>
+<div class="card">
+<div id="rideRequests">
+<div class="ride-request">
+<div class="ride-location">
+<span>From: <strong>Times Square, Manhattan</strong></span>
+</div>
+<div class="ride-location">
+<span>To: <strong>JFK Airport</strong></span>
+</div>
+<div>UberX • 15 miles away • $25-30</div>
+<div>Estimated 25 min • 1 passenger</div>
+<div class="ride-actions">
+<button class="accept-button" onclick="acceptRide()">
+Accept
+</button>
+<button class="reject-button" onclick="rejectRide()">
+Reject
+</button>
+</div>
+</div>
+</div>
+</div>
+
+<div class="footer">
+© 2023 Uber Technologies Inc.
+</div>
+</div>
+
+<script>
+/* Added dropdown functionality (only addition) */
+function toggleProfileDropdown() {
+document.getElementById('profileDropdown').classList.toggle('show-dropdown');
+}
+
+window.onclick = function(event) {
+if (!event.target.matches('.profile-button') && !event.target.closest('.profile-button')) {
+var dropdown = document.getElementById("profileDropdown");
+if (dropdown.classList.contains('show-dropdown')) {
+dropdown.classList.remove('show-dropdown');
+}
+}
+}
+
+function updateStatus() {
+const status = document.getElementById('rideStatus').value;
+if (!status) {
+alert('Please select status first');
+return;
+}
+alert(`Status updated to: ${status}`);
+if (status === 'Offline') {
+document.getElementById('rideRequests').innerHTML = '<p>No rides available (offline)</p>';
+}
+}
+
+function acceptRide() {
+const btn = event.target;
+btn.innerHTML = 'Accepting...';
+btn.disabled = true;
+setTimeout(() => {
+alert('Ride accepted! Navigate to pickup location.');
+document.getElementById('rideStatus').value = 'OnRide';
+document.getElementById('rideRequests').innerHTML = '<p>Currently on a ride</p>';
+}, 1500);
+}
+
+function rejectRide() {
+if (confirm('Reject this ride?')) {
+document.getElementById('rideRequests').innerHTML = '<p>Ride rejected</p>';
+}
+}
+</script>
+</body>
+</html>

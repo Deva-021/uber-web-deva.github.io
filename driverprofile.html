@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Uber Driver Profile</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Arial, sans-serif;
+        }
+        
+        body {
+            background-color: PowderBlue;
+            color: black;
+            padding: 20px;
+        }
+        
+        .profile-container {
+            max-width: 600px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        
+        .profile-header {
+            background: black;
+            color: white;
+            padding: 25px;
+            text-align: center;
+        }
+        
+        .profile-pic {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            border: 4px solid white;
+            object-fit: cover;
+            margin: 0 auto 15px;
+            display: block;
+            background-color: lightgray;
+        }
+        
+        .profile-pic img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            border-radius: 50%;
+        }
+        
+        .driver-name {
+            font-size: 24px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .driver-rating {
+            color: limegreen;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        
+        .driver-id {
+            color: gray;
+            font-size: 14px;
+            margin-bottom: 15px;
+        }
+        
+        .verification-badge {
+            background: limegreen;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 12px;
+            font-weight: bold;
+            display: inline-block;
+            margin-bottom: 20px;
+        }
+        
+        .stats-container {
+            display: flex;
+            justify-content: space-around;
+            padding: 15px 0;
+            background: rgba(255,255,255,0.1);
+        }
+        
+        .stat-item {
+            text-align: center;
+        }
+        
+        .stat-value {
+            font-size: 20px;
+            font-weight: bold;
+            margin-bottom: 5px;
+        }
+        
+        .stat-label {
+            font-size: 12px;
+            opacity: 0.8;
+        }
+        
+        .profile-body {
+            padding: 20px;
+        }
+        
+        .section-title {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+            padding-bottom: 8px;
+            border-bottom: 1px solid gainsboro;
+        }
+        
+        .car-info {
+            display: flex;
+            margin-bottom: 20px;
+            align-items: center;
+        }
+        
+        .car-image-container {
+            width: 120px;
+            height: 80px;
+            border-radius: 8px;
+            margin-right: 15px;
+            overflow: hidden;
+            background-color: lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .car-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+        
+        .car-details h3 {
+            font-size: 16px;
+            margin-bottom: 5px;
+        }
+        
+        .car-details p {
+            color: dimgray;
+            font-size: 14px;
+            margin-bottom: 3px;
+        }
+        
+        .review-item {
+            margin-bottom: 15px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid gainsboro;
+        }
+        
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 5px;
+        }
+        
+        .reviewer-name {
+            font-weight: bold;
+        }
+        
+        .review-rating {
+            color: limegreen;
+        }
+        
+        .review-date {
+            color: gray;
+            font-size: 12px;
+            margin-bottom: 8px;
+        }
+        
+        .review-text {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
+        .contact-button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            background: limegreen;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 20px;
+            transition: background 0.3s;
+        }
+        
+        .contact-button:hover {
+            background: forestgreen;
+        }
+        
+        .apps {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            gap: 15px;
+        }
+        
+        .apps img {
+            width: 40px;
+            height: 40px;
+            object-fit: contain;
+            transition: transform 0.3s;
+        }
+        
+        .apps img:hover {
+            transform: scale(1.1);
+        }
+        
+        @media (max-width: 480px) {
+            .profile-container {
+                margin: 10px;
+            }
+            
+            .car-info {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .car-image-container {
+                margin-right: 0;
+                margin-bottom: 10px;
+                width: 100%;
+                height: 100px;
+            }
+            
+            .apps img {
+                width: 35px;
+                height: 35px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="profile-container">
+        <div class="profile-header">
+            <div class="profile-pic">
+                <img src="driver.jpg" alt="Driver Photo" class="driver-image">
+            </div>
+            <h1 class="driver-name">Michael Johnson</h1>
+            <div class="driver-rating">★ 4.92 (1,240 rides)</div>
+            <div class="driver-id">Driver ID: UB23948761</div>
+            <div class="verification-badge">✓ Verified Partner</div>
+            
+            <div class="stats-container">
+                <div class="stat-item">
+                    <div class="stat-value">5.0</div>
+                    <div class="stat-label">Avg. Rating</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">98%</div>
+                    <div class="stat-label">Acceptance</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-value">2,140</div>
+                    <div class="stat-label">Trips</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="profile-body">
+            <h2 class="section-title">Vehicle Information</h2>
+            <div class="car-info">
+                <div class="car-image-container">
+                    <img src="9.jpg" alt="Car" class="car-image">
+                </div>
+                <div class="car-details">
+                    <h3>2022 Toyota Camry</h3>
+                    <p>🎨 Color: Silver</p>
+                    <p>📇 License: CAMRY2022</p>
+                    <p>👥 4 passengers</p>
+                </div>
+            </div>
+            
+            <h2 class="section-title">Recent Reviews</h2>
+            <div class="review-item">
+                <div class="review-header">
+                    <span class="reviewer-name">Sarah M.</span>
+                    <span class="review-rating">★ 5.0</span>
+                </div>
+                <div class="review-date">2 days ago</div>
+                <p class="review-text">Michael was an excellent driver! The car was clean and he was very friendly. He even helped with my luggage. Would definitely recommend.</p>
+            </div>
+            
+            <div class="review-item">
+                <div class="review-header">
+                    <span class="reviewer-name">James L.</span>
+                    <span class="review-rating">★ 5.0</span>
+                </div>
+                <div class="review-date">1 week ago</div>
+                <p class="review-text">Great conversation and very professional. Took the best route to avoid traffic. Excellent experience!</p>
+            </div>
+            
+            <button class="contact-button">📞 Contact Driver</button>
+            
+            <div class="apps">
+                <a href="#"><img src="facebook.png" alt="Facebook"></a>
+                <a href="#"><img src="twitter.png" alt="Twitter"></a>
+                <a href="#"><img src="insta.png" alt="Instagram"></a>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

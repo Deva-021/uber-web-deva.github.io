@@ -1,0 +1,456 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>About Us - Uber</title>
+<style>
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+background-color: #f5f5f5;
+color: #333;
+line-height: 1.6;
+overflow-x: hidden;
+}
+
+header {
+background: linear-gradient(135deg, #000 0%, #222 100%);
+color: white;
+padding: 40px 0;
+text-align: center;
+animation: fadeIn 1s ease-out;
+}
+
+h1 {
+font-size: 3rem;
+margin: 0;
+color: #00cc66;
+}
+
+.container {
+max-width: 1200px;
+margin: 0 auto;
+padding: 20px;
+}
+
+.section {
+display: flex;
+align-items: center;
+margin: 60px 0;
+background: white;
+border-radius: 10px;
+overflow: hidden;
+box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+}
+
+.section-content {
+flex: 1;
+padding: 40px;
+opacity: 0;
+}
+
+.section:nth-child(odd) .section-content {
+transform: translateX(-50px);
+animation: slideInLeft 0.8s ease-out forwards;
+}
+
+.section:nth-child(even) .section-content {
+transform: translateX(50px);
+animation: slideInRight 0.8s ease-out forwards;
+}
+
+.section:nth-child(1) .section-content { animation-delay: 0.2s; }
+.section:nth-child(2) .section-content { animation-delay: 0.4s; }
+.section:nth-child(3) .section-content { animation-delay: 0.6s; }
+.section:nth-child(4) .section-content { animation-delay: 0.8s; }
+
+.section-image {
+flex: 1;
+min-height: 400px;
+background-size: cover;
+background-position: center;
+opacity: 0;
+transition: transform 0.8s ease;
+}
+
+.section:nth-child(odd) .section-image {
+transform: translateX(50px);
+animation: fadeInRight 0.8s ease-out forwards;
+}
+
+.section:nth-child(even) .section-image {
+transform: translateX(-50px);
+animation: fadeInLeft 0.8s ease-out forwards;
+}
+
+.section:nth-child(1) .section-image { animation-delay: 0.3s; }
+.section:nth-child(2) .section-image { animation-delay: 0.4s; }
+.section:nth-child(3) .section-image { animation-delay: 0.6s; }
+.section:nth-child(4) .section-image { animation-delay: 0.8s; }
+
+.our-mission {
+background-image: url('https://images.unsplash.com/photo-1551836022-8b2858c9c69b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.what-we-offer {
+background-image: url('https://images.unsplash.com/photo-1544620347-c4fd4a3d5957?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.our-values {
+background-image: url('https://images.unsplash.com/photo-1507679799987-737ee1754e0b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.join-movement {
+background-image: url('https://images.unsplash.com/photo-1506765515384-028b60a970df?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80');
+}
+
+.button {
+display: inline-block;
+background: #00cc66;
+color: white;
+padding: 15px 30px;
+text-decoration: none;
+border-radius: 5px;
+font-weight: bold;
+margin-top: 20px;
+transition: all 0.3s;
+}
+
+.button:hover {
+background: #00a859;
+transform: translateY(-3px);
+box-shadow: 0 5px 15px rgba(0, 204, 102, 0.3);
+}
+
+.footer {
+background: #000;
+color: white;
+padding: 50px 0;
+text-align: center;
+animation: fadeIn 1s ease-out;
+}
+
+.footer-container {
+display: flex;
+justify-content: space-around;
+flex-wrap: wrap;
+max-width: 1000px;
+margin: 0 auto 30px;
+}
+
+.footer h3 {
+color: #00cc66;
+margin-bottom: 20px;
+font-size: 1.3rem;
+}
+
+.footer ul {
+list-style: none;
+padding: 0;
+}
+
+.footer li {
+margin-bottom: 10px;
+transition: transform 0.3s;
+}
+
+.footer li:hover {
+transform: translateX(5px);
+}
+
+.footer a {
+color: white;
+text-decoration: none;
+transition: color 0.3s;
+}
+
+.footer a:hover {
+color: #00cc66;
+}
+
+.icons {
+text-align: center;
+margin: 20px 0;
+}
+
+.icons img {
+width: 30px;
+margin: 0 10px;
+transition: transform 0.3s;
+}
+
+.icons img:hover {
+transform: scale(1.2);
+}
+
+.apps {
+text-align: center;
+margin: 20px 0;
+}
+
+.apps img {
+width: 150px;
+margin: 0 10px;
+transition: transform 0.3s;
+}
+
+.apps img:hover {
+transform: scale(1.05);
+}
+
+.options {
+text-align: center;
+margin: 20px 0;
+}
+
+.options button {
+background: none;
+border: none;
+color: white;
+font-size: 16px;
+margin: 0 10px;
+cursor: pointer;
+transition: color 0.3s;
+}
+
+.options button:hover {
+color: #00cc66;
+}
+
+.copyright {
+margin-top: 20px;
+font-size: 0.9rem;
+color: #aaa;
+}
+
+@keyframes fadeIn {
+from { opacity: 0; }
+to { opacity: 1; }
+}
+
+@keyframes slideInLeft {
+from {
+opacity: 0;
+transform: translateX(-50px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes slideInRight {
+from {
+opacity: 0;
+transform: translateX(50px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes fadeInLeft {
+from {
+opacity: 0;
+transform: translateX(-50px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@keyframes fadeInRight {
+from {
+opacity: 0;
+transform: translateX(50px);
+}
+to {
+opacity: 1;
+transform: translateX(0);
+}
+}
+
+@media (max-width: 768px) {
+.section, .section.reverse {
+flex-direction: column;
+}
+
+.section-content, .section-image {
+width: 100%;
+animation: none !important;
+opacity: 1;
+transform: none !important;
+}
+
+.section-image {
+min-height: 250px;
+}
+
+.footer-container {
+flex-direction: column;
+}
+
+.footer-container > div {
+margin-bottom: 30px;
+}
+}
+</style>
+</head>
+<body>
+<header>
+<div class="container">
+<h1>About Uber</h1>
+<p>Moving people and the world forward</p>
+</div>
+</header>
+
+<div class="container">
+<div class="section">
+<div class="section-content">
+<h2>Welcome to Uber</h2>
+<p>Uber is revolutionizing the way people move. Since 2009, we've transformed transportation by connecting riders to drivers through our app. What started as a simple idea to tap a button and get a ride has become a global movement that's changing how cities move.</p>
+<p>Today, we operate in over 10,000 cities worldwide, providing safe, reliable, and affordable transportation options. Whether you're commuting to work, heading to the airport, or exploring a new city, Uber is there to make your journey seamless.</p>
+<a href="#" class="button">Our Story</a>
+</div>
+<div class="section-image our-mission"></div>
+</div>
+
+<div class="section">
+<div class="section-image what-we-offer"></div>
+<div class="section-content">
+<h2>Our Mission</h2>
+<p>We believe transportation should be as reliable as running water, everywhere for everyone. Our mission is to reimagine the way the world moves by connecting riders to drivers at the touch of a button.</p>
+<p>By making transportation more accessible, we're creating opportunity, bringing people together, and making cities more livable. We're not just a ride-sharing company - we're a technology platform that's changing the fabric of urban mobility.</p>
+<a href="#" class="button">Learn About Our Impact</a>
+</div>
+</div>
+
+<div class="section">
+<div class="section-content">
+<h2>What We Offer</h2>
+<p>From ridesharing to food delivery, Uber provides a variety of services designed to make your life easier:</p>
+<ul>
+<li>UberX: Affordable everyday rides</li>
+<li>Uber Black: Premium rides in luxury vehicles</li>
+<li>Uber Eats: Food delivery from your favorite restaurants</li>
+<li>Uber Freight: Transforming the trucking industry</li>
+</ul>
+<a href="#" class="button">Explore All Services</a>
+</div>
+<div class="section-image our-values"></div>
+</div>
+
+<div class="section">
+<div class="section-image join-movement"></div>
+<div class="section-content">
+<h2>Our Values</h2>
+<p>At Uber, we're guided by our core values that shape our company culture:</p>
+<ul>
+<li>Safety: We're committed to your security</li>
+<li>Innovation: We challenge the status quo</li>
+<li>Inclusion: We celebrate diversity</li>
+<li>Integrity: We do the right thing</li>
+</ul>
+<a href="#" class="button">Join Our Team</a>
+</div>
+</div>
+</div>
+
+<footer class="footer">
+<div class="footer-container">
+<div>
+<h3>Company</h3>
+<ul>
+<li><a href="#">About us</a></li>
+<li><a href="#">Our offerings</a></li>
+<li><a href="#">Newsroom</a></li>
+<li><a href="#">Investors</a></li>
+<li><a href="#">Blog</a></li>
+<li><a href="#">Careers</a></li>
+</ul>
+</div>
+<div>
+<h3>Products</h3>
+<ul>
+<li><a href="#">Ride</a></li>
+<li><a href="#">Drive</a></li>
+<li><a href="#">Deliver</a></li>
+<li><a href="#">Eat</a></li>
+<li><a href="#">Uber for Business</a></li>
+</ul>
+</div>
+<div>
+<h3>Global</h3>
+<ul>
+<li><a href="#">Safety</a></li>
+<li><a href="#">Sustainability</a></li>
+<li><a href="#">Diversity</a></li>
+<li><a href="#">Accessibility</a></li>
+</ul>
+</div>
+</div>
+
+<div class="icons">
+<a href="https://www.facebook.com/uber/"><img src="facebook.png" alt="Facebook"></a>
+<a href="https://x.com/Uber?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor"><img src="twitter.png" alt="Twitter"></a>
+<a href="https://www.youtube.com/c/UberIndia"><img src="youtube.png" alt="YouTube"></a>
+<a href="https://www.linkedin.com/company/uber-com"><img src="linkedin.png" alt="LinkedIn"></a>
+<a href="#"><img src="insta.png" alt="Instagram"></a>
+</div>
+
+<div class="options">
+<button>🌎 English</button>
+<button>📍 Chennai</button>
+</div>
+
+<div class="apps">
+<a href="https://play.google.com/store/apps/details?id=com.ubercab">
+<img src="playstore.png" alt="Get it on Google Play">
+</a>
+<a href="https://apps.apple.com/us/app/uber-request-a-ride/id368677368">
+<img src="appstore.png" alt="Download on the App Store">
+</a>
+</div>
+
+<div class="copyright">
+&copy; 2025 Uber Technologies Inc.
+</div>
+</footer>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+const sections = document.querySelectorAll('.section');
+
+const observer = new IntersectionObserver((entries) => {
+entries.forEach(entry => {
+if (entry.isIntersecting) {
+const content = entry.target.querySelector('.section-content');
+const image = entry.target.querySelector('.section-image');
+
+if (!entry.target.classList.contains('animated')) {
+content.style.animationPlayState = 'running';
+image.style.animationPlayState = 'running';
+entry.target.classList.add('animated');
+}
+}
+});
+}, {threshold: 0.1});
+
+sections.forEach(section => {
+const content = section.querySelector('.section-content');
+const image = section.querySelector('.section-image');
+content.style.animationPlayState = 'paused';
+image.style.animationPlayState = 'paused';
+
+observer.observe(section);
+});
+});
+</script>
+</body>
+</html>
+
+

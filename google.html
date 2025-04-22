@@ -1,0 +1,241 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign in - Google Accounts</title>
+    <style>
+        body {
+            font-family: 'Google Sans', Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: whitesmoke;
+        }
+        .container {
+            width: 450px;
+            background-color: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+            padding: 48px 40px 36px;
+            text-align: center;
+        }
+        .logo {
+            width: 75px;
+            margin-bottom: 20px;
+        }
+        h1 {
+            font-size: 24px;
+            font-weight: 400;
+            margin-bottom: 10px;
+        }
+        .subtitle {
+            font-size: 16px;
+            color: darkslategray;
+            margin-bottom: 40px;
+        }
+        .input-container {
+            margin-bottom: 20px;
+            text-align: left;
+        }
+        label {
+            display: block;
+            font-size: 14px;
+            font-weight: 500;
+            margin-bottom: 8px;
+            color: darkslategray;
+        }
+        input {
+            width: 100%;
+            padding: 13px 15px;
+            font-size: 16px;
+            border: 1px solid lightgray;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+        input:focus {
+            border-color: royalblue;
+            outline: none;
+            box-shadow: 0 0 0 2px aliceblue;
+        }
+        .error {
+            color: crimson;
+            font-size: 12px;
+            margin-top: 5px;
+            display: block;
+        }
+        .forgot-email {
+            display: block;
+            text-align: left;
+            margin-bottom: 40px;
+        }
+        .forgot-email a {
+            color: royalblue;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+        }
+        .forgot-email a:hover {
+            text-decoration: underline;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 40px;
+        }
+        .create-account {
+            color: royalblue;
+            text-decoration: none;
+            font-weight: 500;
+            font-size: 14px;
+            padding: 10px 0;
+        }
+        .create-account:hover {
+            text-decoration: underline;
+        }
+        .next-button {
+            background-color: royalblue;
+            color: white;
+            border: none;
+            padding: 10px 24px;
+            border-radius: 4px;
+            font-weight: 500;
+            cursor: pointer;
+        }
+        .next-button:hover {
+            background-color: dodgerblue;
+        }
+        .footer {
+            margin-top: 40px;
+            padding-top: 20px;
+            border-top: 1px solid lightgray;
+            font-size: 12px;
+            color: darkslategray;
+        }
+        .footer-links {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+        .footer-links a {
+            color: darkslategray;
+            text-decoration: none;
+        }
+        .footer-links a:hover {
+            text-decoration: underline;
+        }
+        .language-selector {
+            margin-top: 20px;
+            font-size: 12px;
+        }
+        .checkbox-container {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+        }
+        .checkbox-container input {
+            width: auto;
+            margin-right: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <form id="signInForm">
+            <img src="https://www.google.com/images/branding/googlelogo/1x/googlelogo_color_272x92dp.png" alt="Google" class="logo">
+            <h1>Sign in</h1>
+            <p class="subtitle">with your Google Account to continue to Gmail. This account will be available to other Google apps in the browser.</p>
+            
+            <div class="input-container">
+                <label for="email">Email or phone</label>
+                <input type="text" id="email" name="email" required>
+                <span id="emailError" class="error"></span>
+            </div>
+            
+            <div class="input-container">
+                <label for="password">Enter your password</label>
+                <input type="password" id="password" name="password" required>
+                <span id="passwordError" class="error"></span>
+            </div>
+            
+            <div class="forgot-email">
+                <a href="#">Forgot email?</a>
+            </div>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="terms" name="terms" required>
+                <label for="terms">I agree to the Terms of Service</label>
+                <span id="termsError" class="error"></span>
+            </div>
+            
+            <div class="checkbox-container">
+                <input type="checkbox" id="privacy" name="privacy" required>
+                <label for="privacy">I agree to the Privacy Policy</label>
+            </div>
+            
+            <p style="text-align: left; font-size: 14px; color: darkslategray; margin-bottom: 40px;">
+                Not your computer? Use Guest mode to sign in privately. <a href="#" style="color: royalblue; text-decoration: none;">Learn more</a> about using Guest mode
+            </p>
+            
+            <div class="buttons">
+                <a href="#" class="create-account">Create account</a>
+                <button type="submit" class="next-button">Next</button>
+            </div>
+            
+            <div class="footer">
+                <div class="footer-links">
+                    <a href="#">Help</a>
+                    <a href="#">Privacy</a>
+                    <a href="#">Terms</a>
+                </div>
+                <div class="language-selector">
+                    English (United States)
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        document.getElementById("signInForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            var email = document.getElementById("email").value;
+            var password = document.getElementById("password").value;
+            var terms = document.getElementById("terms").checked;
+            var privacy = document.getElementById("privacy").checked;
+
+            var isValid = true;
+
+                      if (!/^\S+@\S+\.\S+$/.test(email) && !/^\d{10}$/.test(email)) {
+                document.getElementById("emailError").innerHTML = "Please enter a valid email or phone number";
+                isValid = false;
+            } else {
+                document.getElementById("emailError").innerHTML = "";
+            }
+
+                       if (password.length < 6) {
+                document.getElementById("passwordError").innerHTML = "Password must be at least 6 characters long";
+                isValid = false;
+            } else {
+                document.getElementById("passwordError").innerHTML = "";
+            }
+
+                       if (!terms || !privacy) {
+                document.getElementById("termsError").innerHTML = "You must agree to both Terms and Privacy Policy";
+                isValid = false;
+            } else {
+                document.getElementById("termsError").innerHTML = "";
+            }
+
+            if (isValid) {
+                
+                                window.location.href = "interface.html";
+
+            }
+        });
+    </script>
+</body>
+</html>

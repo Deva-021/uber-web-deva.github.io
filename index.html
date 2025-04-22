@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Final Project</title>
+  <style>
+* {
+margin: 0;
+padding: 0;
+box-sizing: border-box;
+}
+body {
+font-family: Arial, sans-serif;
+margin: 0;
+padding: 0;
+min-height: 100vh;
+display: flex;
+flex-direction: column;
+}
+
+ul {
+list-style-type: none;
+margin: 0;
+padding: 0;
+background-color: black;
+display: flex;
+align-items: center;
+justify-content: space-between;
+padding: 10px 20px;
+position: sticky;
+top: 0;
+z-index: 100;
+}
+.name {
+font-size: 50px;
+font-family: Georgia, serif;
+color: white;
+font-weight: bold;
+}
+.nav-menu {
+display: flex;
+gap: 15px;
+}
+button.nav-btn {
+font-size: 20px;
+padding: 10px 20px;
+border: none;
+cursor: pointer;
+border-radius: 25px;
+font-weight: bold;
+transition: all 0.3s ease;
+background: linear-gradient(yellow, orange);
+color: black;
+}
+button.nav-btn:hover {
+background: linear-gradient(orange, red);
+color: white;
+transform: scale(1.1);
+}
+.hero-section {
+background-image: url('html3.jpg');
+background-repeat: no-repeat;
+background-size: cover;
+background-position: center;
+height: 100vh;
+display: flex;
+flex-direction: column;
+justify-content: center;
+align-items: center;
+text-align: center;
+color: white;
+position: relative;
+border-radius: 5px;
+}
+.animated-text {
+animation: slideUp 1.5s ease-out forwards;
+font-size: 50px;
+font-family: Arial, sans-serif;
+color: white;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+margin-bottom: 20px;
+}
+.animated-text1 {
+animation: slideUp 1.5s ease-out forwards;
+font-size: 25px;
+font-family: Arial, sans-serif;
+color: yellow;
+text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+margin-bottom: 30px;
+}
+.animated-button {
+opacity: 0;
+animation: slideUp 1.5s ease-out forwards;
+animation-delay: 1s;
+border-radius: 20px;
+background: linear-gradient(yellow, orange);
+font-size: 20px;
+padding: 12px 25px;
+font-weight: bold;
+border: none;
+cursor: pointer;
+transition: all 0.3s ease;
+}
+.animated-button:hover {
+background: linear-gradient(orange, red);
+color: white;
+transform: scale(1.1);
+}
+.sustainability {
+padding: 80px 20px;
+background-color: whitesmoke;
+text-align: center;
+}
+.sustainability-header {
+display: flex;
+justify-content: space-between;
+align-items: center;
+margin-bottom: 30px;
+    }
+.sustainability h1 {
+font-size: 36px;
+margin-bottom: 30px;
+color: black;
+}
+.sustainability-image {
+width: 100%;
+max-width: 1500px;
+height: 300px;
+margin: 0 auto 30px;
+background-color: lightgray;
+display: flex;
+justify-content: center;
+align-items: center;
+color: dimgray;
+}
+.commitment-text {
+ max-width: 800px;
+margin: 0 auto 40px;
+font-size: 18px;
+line-height: 1.6;
+color: dimgray;
+text-align: left;
+}
+.commitment-text h2 {
+color: black;
+margin-bottom: 15px;
+}
+.milestone {
+max-width: 800px;
+margin: 30px auto;
+text-align: left;
+padding-left: 20px;
+border-left: 4px solid limegreen;
+}
+.milestone h3 {
+color: black;
+margin-bottom: 10px;
+}
+.milestone p {
+margin-bottom: 20px;
+line-height: 1.6;
+}
+.commitment-box {
+background-color: white;
+border-radius: 8px;
+padding: 20px;
+margin: 30px auto;
+max-width: 800px;
+box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+}
+.commitment-box p {
+font-weight: bold;
+margin-bottom: 15px;
+}
+.read-more {
+color: limegreen;
+text-decoration: none;
+font-weight: bold;
+}
+.partners-section {
+ padding: 60px 20px;
+background-color: white;
+text-align: center;
+}
+
+.partner-category {
+max-width: 800px;
+margin: 0 auto 40px;
+text-align: left;
+}
+.partner-category h3 {
+color: black;
+font-size: 24px;
+margin-bottom: 20px;
+border-bottom: 2px solid limegreen;
+padding-bottom: 10px;
+}
+
+.partner-list {
+display: flex;
+flex-wrap: wrap;
+gap: 15px;
+margin-bottom: 30px;
+justify-content: center;
+}
+
+.partner-item {
+background-color: whitesmoke;
+padding: 15px;
+border-radius: 5px;
+font-weight: bold;
+display: flex;
+flex-direction: column;
+align-items: center;
+gap: 10px;
+min-width: 200px;
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    }
+.partner-logo {
+width: 180px;
+height: 120px;
+background-color: lightgray;
+display: flex;
+justify-content: center;
+align-items: center;
+color: dimgray;
+border-radius: 5px;
+    }
+.apps-section {
+padding: 60px 20px;
+background-color: whitesmoke;
+text-align: center;
+}
+
+.apps-container {
+ max-width: 1200px;
+margin: 0 auto;
+}
+.apps-title {
+font-size: 36px;
+margin-bottom: 40px;
+color: black;
+}
+
+.apps-flex {
+display: flex;
+justify-content: center;
+gap: 40px;
+flex-wrap: wrap;
+}
+
+.app-card {
+background-color: white;
+padding: 30px;
+border-radius: 10px;
+box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+width: 300px;
+}
+
+.app-card h3 {
+font-size: 20px;
+margin-bottom: 20px;
+color: black;
+}
+
+.qr-code-placeholder {
+width: 180px;
+height: 180px;
+margin: 0 auto 20px;
+background-color: lightgray;
+display: flex;
+justify-content: center;
+align-items: center;
+color: dimgray;
+}
+
+.app-card p {
+ color: dimgray;
+margin-bottom: 15px;
+}
+
+   
+@keyframes slideUp {
+from {
+opacity: 0;
+transform: translateY(50px);
+}
+to {
+opacity: 1;
+transform: translateY(0);
+}
+}
+.footer {
+background-color: black;
+color: white;
+text-align: center;
+padding: 20px;
+margin-top: auto;
+}
+</style>
+</head>
+<body>
+<ul>
+<li class="name">UBER</li>
+<div class="nav-menu">
+<li><button class="nav-btn" onclick="window.location.href='aboutus.html'">ABOUT US</button></li>
+<li><button class="nav-btn" onclick="window.location.href='login1.html'">LOGIN</button></li>
+<li><button class="nav-btn" onclick="window.location.href='signup.html'">SIGN UP</button></li>
+ <li><button class="nav-btn" onclick="window.location.href='contact.html'">CONTACT</button></li>
+</div>
+ </ul>
+<section class="hero-section">
+<h1 class="animated-text">Uber: <br> Wherever You Go, <br> We're There</h1>
+<h2 class="animated-text1">SIGN UP FOR DRIVER APP</h2>
+<button class="animated-button" onclick="window.location.href='signup2.html'">Sign Up →</button>
+</section>
+<section class="sustainability">
+<div class="sustainability-header">
+<h1>Sustainability</h1>
+</div>
+<div class="sustainability-image">
+<img src="18.jpg" alt="Uber Sustainability" style="width:100%; height:100%; object-fit:cover;">
+</div>
+ <div class="commitment-box">
+<p>Uber strives to be a zero-emission and low-packaging-waste platform by 2040.</p>
+<a href="#" class="read-more">Read our full commitment</a>
+</div>
+ <div class="commitment-text">
+ <h2>Millions of trips a day, zero emissions and a shift to sustainable packaging</h2>
+<p>That's our commitment to every person on the planet, and we'll do everything in our power to get there. The path will be electric and shared. It will be with buses, trains, bicycles, and scooters. It will mean helping people move, order meals, and send things using options that are more sustainable. These changes won't come easily, and they will take work and time to achieve. But we have a plan to get there, and we want you to come along for the ride.</p>
+</div>
+
+<div class="milestone">
+<h3>2020</h3>
+<p>Announced global commitment to becoming a zero-emission mobility platform.</p>
+</div>
+
+<div class="milestone">
+<h3>2023</h3>
+<p>Expanded global commitment to include zero-emission delivery trips and promote the transition to more-sustainable packaging options.</p>
+</div>
+
+<div class="milestone">
+<h3>2025</h3>
+<p>Hundreds of thousands of drivers transition to electric vehicles (EVs) through our Green Future program, with 50% of kilometers in EVs in key European cities.</p>
+<p>80% of restaurant orders with Uber Eats across European and Asia Pacific cities are transitioned from single-use plastics to complete recyclable or comparable packaging options.</p>
+</div>
+
+<div class="milestone">
+<h3>2030</h3>
+<p>Uber is operating as a zero-emission mobility platform in the US, Canada, and European cities.</p>
+<p>100% of Uber Eats restaurant merchants transition to reusable, recyclable, or compostable packaging options globally.</p>
+</div>
+
+<div class="milestone">
+<h3>2040</h3>
+<p>100% of rides and deliveries globally are in zero-emission vehicles or through micromobility or public transit.</p>
+</div>
+</section>
+
+<section class="partners-section">
+<div class="sustainability-header">
+<h1>Our Collaborators and Partners</h1>
+</div>
+<div class="partner-category">
+<h3>Charging Infrastructure</h3>
+<div class="partner-list">
+<div class="partner-item">
+<div class="partner-logo"><img src="Aral-Pulse.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+pulse
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="bnp_pulse.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+bp pulse
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="enel-x.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+enel x
+</div>
+</div>
+</div>
+    
+<div class="partner-category">
+<h3>Electric Vehicles</h3>
+<div class="partner-list">
+<div class="partner-item">
+<div class="partner-logo"><img src="ample.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+ample
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="avis_budget_group.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+avis budget group
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="driveone.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+ RIVENE
+</div>
+ </div>
+</div>
+
+<div class="partner-category">
+<h3>Sustainable packaging</h3>
+<div class="partner-list">
+<div class="partner-item">
+<div class="partner-logo"><img src="Logos_Merch_Belong_16x9.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+belong
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="Logos_Merch_Bunzl_16x9.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+bp pulse
+</div>
+<div class="partner-item">
+<div class="partner-logo"><img src="Logos_Merch_Enviropack_16x9.jpg" alt="pulse logo" style="width:100%; height:100%; object-fit:contain;"></div>
+enviropack
+</div>
+</div>
+</div>
+
+</section>
+
+<section class="apps-section">
+<div class="apps-container">
+<h2 class="apps-title">It's easier in the apps</h2>
+      
+<div class="apps-flex">
+<div class="app-card">
+<h3>Download the Uber app</h3>
+<div class="qr-code-placeholder">
+<img src="user.jpg" alt="Uber app QR code"> 
+</div>
+<p>Scan to download</p>
+          
+</div>
+<div class="app-card">
+<h3>Download the Driver app</h3>
+ <div class="qr-code-placeholder">
+<<img src="driverqr.jpg" alt="Driver app QR code"> 
+</div>
+<p>Scan to download</p>
+      
+</div>
+</div>
+</div>
+</section>
+
+<footer class="footer">
+&copy; 2025 Uber Project. All rights reserved.
+</footer>
+</body>
+</html>

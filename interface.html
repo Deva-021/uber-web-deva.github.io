@@ -1,0 +1,749 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Uber Ride Interface</title>
+<style>
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f9fa;
+    overflow-x: hidden;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+}
+
+@keyframes fadeIn {
+    to {
+        opacity: 1;
+    }
+}
+
+ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 10px 20px;
+    overflow: hidden;
+    background-color: black;
+    position: fixed;
+    top: 0;
+    width: 100%;
+    left: 0;
+    color: white;
+    z-index: 1000;
+}
+
+li {
+    float: left;
+    font-size: 30px;
+    font-family: Georgia, serif;
+    color: white;
+}
+
+li button {
+    font-size: 20px;
+    color: white;
+    background-color: black;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: all 0.3s ease;
+}
+
+li button:hover {
+    background-color: dimgray;
+    transform: scale(1.05);
+}
+
+.main-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    padding: 100px 20px 50px;
+}
+
+.booking-section {
+    max-width: 400px;
+    padding: 20px;
+    flex: 1;
+    animation: slideInLeft 0.8s ease-out;
+}
+
+@keyframes slideInLeft {
+    from {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.booking-section h2 {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.input-box {
+    width: 100%;
+    padding: 12px;
+    margin: 20px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    transition: all 0.3s ease;
+}
+
+.input-box:focus {
+    transform: scale(1.02);
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+}
+
+.select-box {
+    width: 50%;
+    padding: 12px;
+    margin: 10px 0;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.select-box:hover {
+    transform: scale(1.02);
+}
+
+.btn {
+    background-color: black;
+    color: white;
+    padding: 12px;
+    font-size: 18px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    width: 100%;
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #333;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+}
+
+.image-box {
+    flex: 1;
+    text-align: center;
+    padding: 10px;
+    animation: slideInRight 0.8s ease-out;
+}
+
+@keyframes slideInRight {
+    from {
+        transform: translateX(50px);
+        opacity: 0;
+    }
+    to {
+        transform: translateX(0);
+        opacity: 1;
+    }
+}
+
+.image-box img {
+    max-width: 100%;
+    height: auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.5s ease;
+}
+
+.image-box img:hover {
+    transform: scale(1.03);
+}
+
+.ride-options {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.ride-options h2 {
+    font-size: 32px;
+    font-weight: bold;
+    animation: fadeIn 1s ease-out;
+}
+
+.ride-cards {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.card {
+    background-color: white;
+    border-radius: 10px;
+    padding: 20px;
+    width: 300px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: left;
+    transition: all 0.3s ease;
+}
+
+.card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
+}
+
+.card img {
+    width: 80px;
+    height: auto;
+    float: left;
+    transition: all 0.3s ease;
+}
+
+.card:hover img {
+    transform: rotate(5deg);
+}
+
+.card h3 {
+    font-size: 20px;
+    margin: 10px 0;
+}
+
+.card p {
+    font-size: 14px;
+    color: #666;
+}
+
+.details-btn {
+    display: inline-block;
+    margin-top: 10px;
+    padding: 8px 15px;
+    background-color: black;
+    color: white;
+    font-size: 14px;
+    border-radius: 20px;
+    text-decoration: none;
+    transition: all 0.3s ease;
+}
+
+.details-btn:hover {
+    background-color: #333;
+    transform: scale(1.1);
+}
+
+.trip-section {
+    text-align: center;
+    padding: 50px 20px;
+}
+
+.trip-section h2 {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+.trip-steps {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 20px;
+}
+
+.step {
+    text-align: center;
+    width: 300px;
+    transition: all 0.3s ease;
+}
+
+.step:hover {
+    transform: scale(1.05);
+}
+
+.step img {
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease;
+}
+
+.step:hover img {
+    box-shadow: 0 8px 16px rgba(0,0,0,0.2);
+}
+
+.step h3 {
+    font-size: 18px;
+    margin-top: 10px;
+}
+
+.step p {
+    font-size: 14px;
+    color: #666;
+}
+
+@media (max-width: 768px) {
+    .main-container {
+        flex-direction: column;
+        text-align: center;
+    }
+    .booking-section {
+        max-width: 100%;
+    }
+    .image-box {
+        order: -1;
+    }
+    .ride-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    .trip-steps {
+        flex-direction: column;
+        align-items: center;
+    }
+}
+
+.sidebar {
+    height: 100%;
+    width: 300px;
+    position: fixed;
+    top: 0;
+    right: -300px;
+    background-color: #1f1f1f;
+    overflow-x: hidden;
+    transition: 0.3s;
+    padding-top: 60px;
+    color: white;
+    box-shadow: -2px 0px 5px rgba(0, 0, 0, 0.5);
+}
+
+.sidebar.active {
+    right: 0;
+    animation: slideIn 0.3s ease-out;
+}
+
+@keyframes slideIn {
+    from {
+        right: -300px;
+    }
+    to {
+        right: 0;
+    }
+}
+
+.sidebar-header {
+    text-align: center;
+    padding: 10px;
+    border-bottom: 1px solid gray;
+}
+
+.sidebar-header img {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    transition: all 0.3s ease;
+}
+
+.sidebar-header img:hover {
+    transform: rotate(360deg);
+}
+
+.sidebar-header h3 {
+    margin-top: 10px;
+}
+
+.sidebar a {
+    display: flex;
+    align-items: center;
+    padding: 12px;
+    text-decoration: none;
+    color: white;
+    transition: 0.2s;
+    font-size: 16px;
+}
+
+.sidebar .close-btn {
+    position: absolute;
+    top: 10px;
+    right: 15px;
+    font-size: 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.sidebar .close-btn:hover {
+    transform: rotate(90deg);
+}
+
+.sidebar a:hover {
+    background-color: #333;
+    padding-left: 30px;
+    color: yellow;
+}
+
+.backgroundimage {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('html.jpg');
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    opacity: 0.5;
+    z-index: -1;
+    animation: zoomIn 10s infinite alternate;
+}
+
+@keyframes zoomIn {
+    from {
+        transform: scale(1);
+    }
+    to {
+        transform: scale(1.05);
+    }
+}
+
+#overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    z-index: 1001;
+    display: none;
+    animation: fadeIn 0.3s ease-out;
+}
+
+#rideFormContainer {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1002;
+    display: none;
+    background-color: white;
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    max-height: 90vh;
+    overflow-y: auto;
+    width: 90%;
+    max-width: 600px;
+    animation: popIn 0.4s ease-out;
+}
+
+@keyframes popIn {
+    0% {
+        transform: translate(-50%, -50%) scale(0.8);
+        opacity: 0;
+    }
+    100% {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 1;
+    }
+}
+
+.ride-container {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 15px;
+    border-radius: 10px;
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.ride-container:hover {
+    background-color: #f5f5f5;
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+.text-container {
+    display: flex;
+    flex-direction: column;
+    margin-left: 20px;
+    flex-grow: 1;
+}
+
+.size {
+    font-size: 18px;
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+}
+
+.person-icon {
+    width: 1em;
+    height: 1em;
+    vertical-align: middle;
+    margin-left: 5px;
+}
+
+.price {
+    font-size: 20px;
+    margin-left: auto;
+    color: green;
+    font-weight: bold;
+}
+
+.hi {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.close-form-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 24px;
+    cursor: pointer;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.close-form-btn:hover {
+    color: black;
+    transform: rotate(90deg);
+}
+
+#rideFormContainer h1 {
+    margin-bottom: 25px;
+    color: #333;
+    text-align: center;
+}
+
+.ride-container img {
+    width: 100px;
+    height: 100px;
+    object-fit: contain;
+    border-radius: 8px;
+    transition: all 0.3s ease;
+}
+
+.ride-container:hover img {
+    transform: scale(1.1);
+}
+
+.error-message {
+    color: red;
+    font-size: 14px;
+    margin-top: 5px;
+    display: none;
+    animation: shake 0.5s;
+}
+
+@keyframes shake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-5px); }
+    40%, 80% { transform: translateX(5px); }
+}
+</style>
+</head>
+<body>
+<ul>
+<li>Uber</li>
+<li style="float:right;">
+<button onclick="toggleSidebar()">Profile</button>
+</li>
+</ul>
+<div class="backgroundimage"></div>
+<div id="sidebar" class="sidebar">
+<div class="sidebar-header">
+<span class="close-btn" onclick="toggleSidebar()">✖</span>
+<img src="avatar6.png" alt="User Avatar">
+<h3>Deva</h3>
+<p>7842138056</p>
+<p>deva@4274gmail.com</p>
+<p style="color: gray;">Uber User</p>
+</div>
+<a href="#message">💬 Message</a>
+<a href="#privacy">🔒 Privacy</a>
+<a href="#security">🔑 Security</a>
+<a href="#account">📂 Manage Account</a>
+<a href="#settings">⚙ Settings</a>
+<a href="#wallet">💳 Wallet</a>
+<a href="#help">❓ Help</a>
+<a href="#logout" style="color: red;" onclick="window.location.href='index.html';">🚪 Sign Out</a>
+</div>
+<div class="main-container">
+<div class="booking-section">
+<h1>Get ready for your first trip</h1>
+<input type="text" class="input-box" id="location" placeholder="Enter location">
+<input type="text" class="input-box" id="destination" placeholder="Enter destination">
+<input type="text" class="input-box" id="vehicle" placeholder="choose the vehicle">
+<select class="select-box" id="pickupTime">
+<option value="">---Pick Up time---</option>
+<option>Now</option>
+<option>After 1hr</option>
+<option>Tomorrow</option>
+</select>
+<div id="formError" class="error-message">Please fill all the details before starting the ride</div>
+<button class="btn" onclick="showRideOptions()">See Prices</button>
+<br>
+<br>
+<button class="btn" id="startRideBtn">start ride</button>
+</div>
+<div class="image-box">
+<img src="3-2-ridesharing.jpg" alt="First Image">
+</div>
+</div>
+<div class="ride-options">
+<h2>Ways to ride and more</h2>
+<div class="ride-cards">
+<div class="card">
+<h3>Courier</h3>
+<p>Uber makes same-day item delivery easier than ever.</p>
+<img src="Courier.png" alt="Courier Icon">
+<br>
+<a href="#" class="details-btn">Details</a>
+</div>
+<div class="card">
+<h3>Reserve</h3>
+<p>Reserve your ride in advance so you can relax on the day of your trip.</p>
+<img src="reserve_clock.png" alt="Reserve Icon">
+<br>
+<a href="#" class="details-btn">Details</a>
+</div>
+<div class="card">
+<h3>Ride</h3>
+<p>Go anywhere with Uber. Request a ride, hop in, and go.</p>
+<img src="ride.png" alt="Ride Icon">
+<br>
+<a href="#" class="details-btn">Details</a>
+</div>
+</div>
+</div>
+<div class="trip-section">
+<h2>Book your trip on your phone or computer</h2>
+<div class="trip-steps">
+<div class="step">
+<img src="book-computer.jpg" alt="Add trip details">
+<h3>1. Add your trip details</h3>
+<p>Enter your pickup and destination to check prices.</p>
+<a href="#" class="details-btn">Book your ride</a>
+</div>
+<div class="step">
+<img src="add-payment.jpg" alt="Pay easily">
+<h3>2. Pay easily</h3>
+<p>Add your preferred payment method and choose a ride.</p>
+</div>
+<div class="step">
+<img src="meet-your-driver.jpg" alt="Meet your driver">
+<h3>3. Meet your driver</h3>
+<p>Uber matches you with a driver, and you get updates.</p>
+</div>
+</div>
+</div>
+<div id="overlay"></div>
+<div id="rideFormContainer">
+<span class="close-form-btn" onclick="hideRideOptions()">✖</span>
+<center>
+<h1>Choose a ride</h1>
+<div class="ride-container">
+<img src="Hatchback.png" alt="Hatchback">
+<div class="text-container">
+<div class="hi">
+<p class="size"><b>Uber Go<b> 4 <img src="person.jpg" alt="Person Icon" class="person-icon"></p>
+<h2 class="price">₹120</h2>
+</div>
+<p>14 mins away</p>
+<p>Affordable Compact Prices</p>
+</div>
+</div>
+<div class="ride-container">
+<img src="auto.png" alt="Auto">
+<div class="text-container">
+<div class="hi">
+<p class="size"><b>Auto<b> 3 <img src="person.jpg" alt="Person Icon" class="person-icon"></p>
+<h2 class="price">₹80</h2>
+</div>
+<p>5 mins away</p>
+<p>pay directly to the Driver or cash/upi only</p>
+</div>
+</div>
+<div class="ride-container">
+<img src="bike.png" alt="SUV">
+<div class="text-container">
+<div class="hi">
+<p class="size"><b>Moto<b> 1 <img src="person.jpg" alt="Person Icon" class="person-icon"></p>
+<h2 class="price">₹50</h2>
+</div>
+<p>7mins away</p>
+<p>Affordable,motorcycles rides</p>
+</div>
+</div>
+<div class="ride-container">
+<img src="go sedan.png" alt="Sedan">
+<div class="text-container">
+<div class="hi">
+<p class="size"><b>GO Sedan<b> 4 <img src="person.jpg" alt="Person Icon" class="person-icon"></p>
+<h2 class="price">₹160</h2>
+</div>
+<p>10 mins away</p>
+<p>Affordable sedans</p>
+</div>
+</div>
+<div class="ride-container">
+<img src="uberxl.png" alt="SUV">
+<div class="text-container">
+<div class="hi">
+<p class="size"><b>Uberxl<b> 6 <img src="person.jpg" alt="Person Icon" class="person-icon"></p>
+<h2 class="price">₹200</h2>
+</div>
+<p>20 mins away</p>
+<p>Comfortable SUV's</p>
+</div>
+</div>
+</center>
+</div>
+<script>
+function toggleSidebar() {
+var sidebar = document.getElementById("sidebar");
+sidebar.classList.toggle("active");
+}
+function showRideOptions() {
+document.getElementById('overlay').style.display = 'block';
+document.getElementById('rideFormContainer').style.display = 'block';
+document.body.style.overflow = 'hidden';
+}
+function hideRideOptions() {
+document.getElementById('overlay').style.display = 'none';
+document.getElementById('rideFormContainer').style.display = 'none';
+document.body.style.overflow = 'auto';
+}
+function validateRideForm() {
+var location = document.getElementById('location').value;
+var destination = document.getElementById('destination').value;
+var vehicle = document.getElementById('vehicle').value;
+var pickupTime = document.getElementById('pickupTime').value;
+var errorElement = document.getElementById('formError');
+if (!location || !destination || !vehicle || !pickupTime) {
+errorElement.style.display = 'block';
+return false;
+}
+errorElement.style.display = 'none';
+return true;
+}
+document.getElementById('startRideBtn').addEventListener('click', function() {
+if (validateRideForm()) {
+alert('Ride has been requested successfully!');
+} else {
+document.getElementById('formError').style.display = 'block';
+}
+});
+</script>
+</body>
+</html>
